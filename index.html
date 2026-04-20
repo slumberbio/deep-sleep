@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlumberBio | The 14-Day Sleep Architecture Reset</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2280%22>🌙</text></svg>">
+    <style>
+        :root {
+            --bg-color: #181236;
+            --gold: #dcb360;
+            --white: #ffffff;
+            --text-muted: #aeb2d8;
+            --card-bg: #f8f8fb;
+            --card-text: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, rgba(60, 45, 115, 0.4), transparent 50%),
+                              radial-gradient(circle at bottom left, rgba(60, 45, 115, 0.4), transparent 50%);
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        /* Responsive Page Container */
+        .page-container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: transparent;
+            min-height: 100vh;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Decorative stars */
+        .page-container::before, .page-container::after {
+            content: "✦";
+            position: absolute;
+            color: var(--gold);
+            opacity: 0.3;
+            font-size: 2rem;
+            pointer-events: none;
+        }
+        .page-container::before { top: 80px; right: 5%; }
+        .page-container::after { bottom: 200px; left: 5%; }
+
+        /* Top Graphic Placeholder */
+        .header-graphic {
+            background: linear-gradient(145deg, #1f2759, #101438);
+            border: 2px solid #2a3365;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 0 auto 30px auto;
+            width: 100%;
+            max-width: 600px; /* Keeps it from getting too wide on desktop */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .header-graphic p {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header-graphic .icon {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--white);
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--white);
+            margin: 0 auto 30px auto;
+            max-width: 600px;
+            padding: 0 15px;
+        }
+
+        .cta-btn {
+            display: block;
+            background: linear-gradient(to right, #e8c678, #cfa049);
+            color: #000;
+            text-decoration: none;
+            padding: 18px 30px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            box-shadow: 0 6px 20px rgba(207, 160, 73, 0.25);
+            max-width: 400px;
+            margin: 0 auto; /* Centered on larger screens */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(207, 160, 73, 0.4);
+        }
+
+        /* Pain Points */
+        .pain-points {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .icon-row {
+            display: flex;
+            justify-content: space-between;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30%;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .icon-item p {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Features Grid */
+        .features {
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 columns on mobile */
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            padding: 20px 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card .emoji {
+            font-size: 1.4rem;
+            margin-right: 12px;
+            background: #2a2356;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Specific styling for the 4-7-8 graphic card */
+        .card-graphic {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #1a1040;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .breathing-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .breathing-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            background: #1a1040;
+            color: white;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Authority Section */
+        .authority {
+            text-align: center;
+            margin-bottom: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .authority h3 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .authority p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .authority .faq {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+
+        .footer-left {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .socials {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .email {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+           MEDIA QUERIES FOR DESKTOP / TABLET
+           ========================================= */
+        @media (min-width: 768px) {
+            .page-container {
+                padding: 50px 40px;
+            }
+
+            .hero h1 {
+                font-size: 3rem; /* Larger hero text */
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .icon-circle {
+                width: 80px;
+                height: 80px;
+                font-size: 2.2rem;
+            }
+
+            .icon-item p {
+                font-size: 1.1rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .authority p {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+
+        <div class="header-graphic">
+            <p>THE 14-DAY SLEEP<br>ARCHITECTURE RESET</p>
+            <div class="icon">⏱</div>
+        </div>
+
+        <section class="hero">
+            <h1>STOP SURVIVING YOUR<br>MORNINGS.<br><span>MASTER YOUR NIGHTS.</span></h1>
+            <p>A 14-day neuroscience-backed protocol to reset your circadian rhythm and reclaim peak performance.</p>
+            <a href="https://app.lava.top/products/04923dc8-608e-49c4-bd29-1d2da0357799" class="cta-btn" target="_blank" rel="noopener noreferrer">GET THE RESET — $19.00</a>
+        </section>
+
+        <section class="pain-points">
+            <h2 class="section-title">IS YOUR BIOLOGY OUT OF SYNC?</h2>
+            <div class="icon-row">
+                <div class="icon-item">
+                    <div class="icon-circle">🧟‍♂️</div>
+                    <p>Zombie<br>Mornings</p>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">🕒</div>
+                    <p>The 3 PM<br>Crash</p>
+                </div>
+                <div class="icon-item">
+                    <div class="icon-circle">🧠</div>
+                    <p>The Racing<br>Mind</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 class="section-title">BEYOND 'SLEEP TIPS'. THIS IS ARCHITECTURE.</h2>
+            <div class="feature-grid">
+                <div class="card">
+                    <span class="emoji">📝</span> Interactive Daily Trackers
+                </div>
+                <div class="card">
+                    <span class="emoji">📘</span> 6 Deep-Dive Theory Steps
+                </div>
+                <div class="card">
+                    <span class="emoji">🧠</span> Neural Reset Protocols
+                </div>
+                <div class="card">
+                    <span class="emoji">💊</span> Supplement Optimization
+                </div>
+                <div class="card-graphic">
+                    <div class="breathing-title">4-7-8</div>
+                    <div class="breathing-dots">
+                        <span class="dot">02</span>
+                        <span class="dot">04</span>
+                        <span class="dot">06</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <span class="emoji">❤️</span> Lifetime Maintenance
+                </div>
+            </div>
+        </section>
+
+        <section class="authority">
+            <h3>AUTHORITY</h3>
+            <p>BASED ON CHRONOBIOLOGY & NEUROCHEMISTRY.<br>NO MELATONIN. Just pure biological optimization.</p>
+            <p class="faq"><strong>FAQ:</strong> 28 pages, digital-only, mobile-optimized, results in 4 days.</p>
+        </section>
+
+        <footer>
+            <div class="footer-left">
+                START YOUR<br>RESET TONIGHT
+            </div>
+            <div class="footer-right">
+                <div class="socials">
+                    <a href="https://www.instagram.com/slumber_bio/">📷</a>
+                </div>
+                <div class="email">
+
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
